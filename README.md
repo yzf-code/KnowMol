@@ -4,9 +4,9 @@ Codes for our paper *KnowMol: Advancing Molecular Large Language Models with Mul
 
 
 ## Overview
-<p align="center">
+<!-- <p align="center">
     <a> <img src="assets/static/teaser.png" width="100%"> </a>
-</p>
+</p> -->
 The molecular large language models have garnered widespread attention due to their promising potential on molecular applications. However, current molecular large language models face significant limitations in understanding molecules due to inadequate textual descriptions and suboptimal molecular representation strategies during pretraining. To address these challenges, we introduce KnowMol-100K, a large-scale dataset with 100K fine-grained molecular annotations across multiple levels, bridging the gap between molecules and textual descriptions. Additionally, we propose chemically-informative molecular representation, effectively addressing limitations in existing molecular representation strategies. Building upon these innovations, we develop KnowMol, a state-of-the-art multi-modal molecular large language model. Extensive experiments demonstrate that KnowMol achieves superior performance across molecular understanding and generation tasks.
 
 <!-- ## Architecture
@@ -21,6 +21,7 @@ The diagram presented below provides an overview of the architectural design of 
 
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/tatsu-lab/stanford_alpaca/blob/main/LICENSE)
 [![Data License](https://img.shields.io/badge/Data%20License-CC%20By%20NC%204.0-red.svg)](https://github.com/tatsu-lab/stanford_alpaca/blob/main/DATA_LICENSE)
+
 **Usage and License Notices**: The data, code and checkpoint is intended and licensed for research use only. They are also restricted to uses that follow the license agreement of LLaMA, Vicuna, LLaVA, Mol-Instructions and GPT-4. The dataset is using MIT license and models trained using the dataset should not be used outside of research purposes.
 
 
@@ -90,7 +91,7 @@ Please see the full dataset in https://huggingface.co/datasets/yzf1102/KnowMol-1
 ## Train
 KnowMol training consists of two stages:
 
-* **Stage 1: Pretraining.** 
+* **Stage 1: Pretraining.** The pretraining stage uses the two tasks (Multi_Round_Question_Answering and Description_Guided_Molecule_Generation) to inject comprehensive chemical knowledge into the LLM. Given these high-quality data, only fine-tuning the projection layers does not suffice to exploit the full capabilities. So this stage involves fine-tuning LLM using low-rank adaptation (LoRA) and the projection layers. The molecule graph encoder is frozen to avoid feature interference.
 * **Stage 2: Task-specific Instruction Tuning.** The second stage fine-tunes KnowMol for specific downstream tasks, allowing it to effectively interpret and follow human instructions, thereby enhancing the model’s performance across various applications. We also utilize LoRA to improve efficiency.
 
 ### Stage 1: Pretraining
@@ -104,11 +105,6 @@ You can train each task with specific script. (e.g., [molecule description gener
 ## Evaluation
 See [Evaluation.md](Evaluation.md) for detailed instructions on how to evaluate the model.
 
-<!-- ## Citation
-If you find KnowMol useful for your your research and applications, please cite using this BibTeX:
-```bibtex
-
-``` -->
 
 ## Acknowledgement
 
